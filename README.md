@@ -8,6 +8,8 @@ Projeto de automação que conecta à API do Google Ads, gera relatórios de cam
 - Geração de relatório em Excel
 - Envio automático por e-mail
 - Agendamento de execução (ex: diário)
+- Configuração via arquivo YAML
+- Logs automáticos das operações
 
 ## Como usar
 
@@ -19,6 +21,33 @@ Projeto de automação que conecta à API do Google Ads, gera relatórios de cam
     pip install -r requirements.txt
     ```
 3. Configure o arquivo `config.yaml` com suas credenciais e parâmetros de relatório.
+```yaml
+    google_ads:
+  developer_token: "SUA_DEVELOPER_TOKEN"
+  client_id: "SEU_CLIENT_ID"
+  client_secret: "SEU_CLIENT_SECRET"
+  refresh_token: "SEU_REFRESH_TOKEN"
+  customer_id: "SUA_CUSTOMER_ID"
+report:
+  start_date: "2024-06-01"
+  end_date: "2024-06-15"
+  metrics:
+    - campaign.id
+    - campaign.name
+    - metrics.impressions
+    - metrics.clicks
+    - metrics.cost_micros
+email:
+  enabled: true
+  smtp_server: smtp.gmail.com
+  smtp_port: 587
+  username: seu_email@gmail.com
+  password: sua_senha_de_app
+  from: seu_email@gmail.com
+  to: destinatario@gmail.com
+schedule_minutes: 1440 # 1 vez por dia
+
+```
 4. Execute o script:
     ```bash
     python reporter.py
