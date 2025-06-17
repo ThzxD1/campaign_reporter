@@ -1,0 +1,6 @@
+pandas
+openpyxl
+schedule
+google-ads
+PyYAML
+smtplib
