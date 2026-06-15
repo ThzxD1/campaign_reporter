@@ -1,33 +1,33 @@
-# Gerador Automático de Relatórios de Campanhas
+# Automatic Campaign Report Generator
 
-Projeto de automação que conecta à API do Google Ads, gera relatórios de campanhas em Excel e envia por e-mail automaticamente.
+Automation that connects to the Google Ads API, generates campaign reports in Excel, and emails them automatically on a schedule.
 
-## Funcionalidades
+## Features
+- Pulls data from the Google Ads API via configurable parameters
+- Generates an Excel report
+- Sends it automatically by email
+- Scheduled runs (e.g. daily)
+- YAML-based configuration
+- Automatic operation logs
 
-- Busca de dados da API Google Ads via parâmetros configuráveis
-- Geração de relatório em Excel
-- Envio automático por e-mail
-- Agendamento de execução (ex: diário)
-- Configuração via arquivo YAML
-- Logs automáticos das operações
+## Usage
+```bash
+git clone https://github.com/ThzxD1/campaign_reporter.git
+cd campaign_reporter
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python reporter.py
+```
 
-## Como usar
-
-1. Clone o repositório
-2. Instale as dependências
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    pip install -r requirements.txt
-    ```
-3. Configure o arquivo `config.yaml` com suas credenciais e parâmetros de relatório.
+## Example Configuration (`config.yaml`)
 ```yaml
-    google_ads:
-  developer_token: "SUA_DEVELOPER_TOKEN"
-  client_id: "SEU_CLIENT_ID"
-  client_secret: "SEU_CLIENT_SECRET"
-  refresh_token: "SEU_REFRESH_TOKEN"
-  customer_id: "SUA_CUSTOMER_ID"
+google_ads:
+  developer_token: "YOUR_DEVELOPER_TOKEN"
+  client_id: "YOUR_CLIENT_ID"
+  client_secret: "YOUR_CLIENT_SECRET"
+  refresh_token: "YOUR_REFRESH_TOKEN"
+  customer_id: "YOUR_CUSTOMER_ID"
 report:
   start_date: "2024-06-01"
   end_date: "2024-06-15"
@@ -41,27 +41,14 @@ email:
   enabled: true
   smtp_server: smtp.gmail.com
   smtp_port: 587
-  username: seu_email@gmail.com
-  password: sua_senha_de_app
-  from: seu_email@gmail.com
-  to: destinatario@gmail.com
-schedule_minutes: 1440 # 1 vez por dia
-
+  username: your_email@gmail.com
+  password: your_app_password
+  from: your_email@gmail.com
+  to: recipient@gmail.com
+schedule_minutes: 1440   # once per day
 ```
-4. Execute o script:
-    ```bash
-    python reporter.py
-    ```
 
-## Observações
-
-- As credenciais do Google Ads podem ser obtidas em [Google Cloud Console](https://console.cloud.google.com/).
-- Use senhas de app para o e-mail.
-- Logs em `logs/reporter.log`.
-- Relatórios gerados na pasta `reports/`.
-
-## Referências
-
-- [Google Ads Python Client](https://developers.google.com/google-ads/api/docs/client-libs/python)
-- [Automação de e-mail com Python](https://realpython.com/python-send-email/)
-- [Agendando tarefas com schedule](https://realpython.com/python-schedule/)
+## Notes
+- Google Ads credentials can be obtained in the Google Cloud Console.
+- Use app passwords for email.
+- Logs are saved in `logs/reporter.log`; reports in the `reports/` folder.
